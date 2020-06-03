@@ -58,7 +58,7 @@ def joy2ja3(joy,raw):
 if sys.argv[1] in ['-h','--help','--h']:
         print("Usage:"+'\n'+"python3 joy2ja3 <JSON file>")
         exit(0)
-raw=input("Do you want the raw JA3 fingerprint? [y/n] (default n) ")
+raw=input("Do you want the raw JA3 fingerprints? [y/n] (default n) ")
 try:
     reader=open(sys.argv[1], 'r')
 except FileNotFoundError:
