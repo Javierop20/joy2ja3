@@ -56,6 +56,24 @@ def joy2ja3(joy,raw):
     else:
         return ja3
 
-joy=input("Insert the joy line:")
-resp =joy2ja3(joy,True)
-print(resp[0]+'\n'+resp[1])
+raw=input("Do you want the raw JA3 fingerptrint?[y/n] (default n)")
+try:
+    reader=open(argv[1], 'r')
+except FileNotFoundError:
+    if argv[1] in ['-h','--help']:
+        print("Usage:"+'\n'+"python3 joy2ja3 <JSON file>")
+        exit(0)
+    print("File not found, exiting...")
+    exit(1)
+hashes =[]
+rawja3=[]
+if raw.lower() =='y':
+    for line in reader:
+        hashes.append(joy2ja3(line,True)[1])
+        rawja3.append(joy2ja3(line,True)[0])
+    print(hashes)
+    print(rawja3)
+else:
+    for line in reader:
+        hashes.append(joy2ja3(line,False))
+    print(hashes)
