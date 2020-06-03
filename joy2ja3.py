@@ -1,7 +1,7 @@
 import json
 import hashlib
 import re
-
+import sys
 def hextodec(hex):
     dec = int(hex, 16)
     return str(dec)
@@ -55,14 +55,13 @@ def joy2ja3(joy,raw):
         return out,ja3
     else:
         return ja3
-
-raw=input("Do you want the raw JA3 fingerptrint?[y/n] (default n)")
-try:
-    reader=open(argv[1], 'r')
-except FileNotFoundError:
-    if argv[1] in ['-h','--help']:
+if sys.argv[1] in ['-h','--help','--h']:
         print("Usage:"+'\n'+"python3 joy2ja3 <JSON file>")
         exit(0)
+raw=input("Do you want the raw JA3 fingerptrint? [y/n] (default n) ")
+try:
+    reader=open(sys.argv[1], 'r')
+except FileNotFoundError:
     print("File not found, exiting...")
     exit(1)
 hashes =[]
